@@ -16,15 +16,15 @@ const covid19ImpactEstimator = (data) => {
   let periodTypeValue = null;
   let days = null;
   if (periodType === 'days') {
-    days = 30;
+    days = timeToElapse;
     const factor = days / 3;
     periodTypeValue = 2 ** factor;
   } else if (periodType === 'weeks') {
-    days = 30;
+    days = 7 * timeToElapse;
     const factor = days / 3;
     periodTypeValue = 2 ** factor;
   } else {
-    days = 30 * timeToElapse;
+    days = 30;
     const factor = days / 3;
     periodTypeValue = 2 ** factor;
   }
