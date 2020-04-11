@@ -8,7 +8,8 @@ const covid19ImpactEstimator = (data) => {
   const severeImpactResult = {};
 
   // check for data-period-type
-  const periodTypeValue, days;
+  let periodTypeValue = null;
+  let days = null;
   if (periodType === 'days') {
     days = 30;
     periodTypeValue = 1024;
@@ -73,4 +74,5 @@ const covid19ImpactEstimator = (data) => {
     severeImpact: severeImpactResult
   };
 };
+
 export default covid19ImpactEstimator;
