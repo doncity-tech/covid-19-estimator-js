@@ -57,17 +57,17 @@ const covid19ImpactEstimator = (data) => {
   severeImpactResult.hospitalBedsByRequestedTime = temp50;
 
   // 5% of infectionsByRequestedTime
-  impactResult.casesForICUByRequestedTime = Math.trunc(5 / 100) * infectReqTime10;
-  severeImpactResult.casesForICUByRequestedTime = Math.trunc(5 / 100) * infectReqTime50;
+  impactResult.casesForICUByRequestedTime = Math.trunc((5 / 100) * infectReqTime10);
+  severeImpactResult.casesForICUByRequestedTime = Math.trunc((5 / 100) * infectReqTime50);
 
   // 2% of infectionsByRequestedTime
-  impactResult.casesForVentilatorsByRequestedTime = Math.trunc(2 / 100) * infectReqTime10;
-  severeImpactResult.casesForVentilatorsByRequestedTime = Math.trunc(2 / 100) * infectReqTime50;
+  impactResult.casesForVentilatorsByRequestedTime = Math.trunc((2 / 100) * infectReqTime10);
+  severeImpactResult.casesForVentilatorsByRequestedTime = Math.trunc((2 / 100) * infectReqTime50);
 
   // How much money the economy is likely to lose over the said period.
   const temp = avgDailyIncomePopulation * avgDailyIncomeInUSD * days;
-  impactResult.dollarsInFlight = infectReqTime10 * temp;
-  severeImpactResult.dollarsInFlight = infectReqTime50 * temp;
+  impactResult.dollarsInFlight = Math.trunc(infectReqTime10 * temp);
+  severeImpactResult.dollarsInFlight = Math.trunc(infectReqTime50 * temp);
 
   return {
     data: originalData,
