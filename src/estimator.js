@@ -11,6 +11,7 @@ const covid19ImpactEstimator = (data) => {
   const impactResult = {};
   const severeImpactResult = {};
 
+  // check for data-period-type
   let periodTypeValue = null;
   let days = null;
   if (periodType === 'days') {
@@ -34,15 +35,15 @@ const covid19ImpactEstimator = (data) => {
   impactResult.infectionsByRequestedTime = reportedCases * 10 * periodTypeValue;
   severeImpactResult.infectionsByRequestedTime = reportedCases * 50 * periodTypeValue;
 
-  //15% of infectionsByRequestedTime impact
+  // 15% of infectionsByRequestedTime impact  
   const infectReqTime10 = reportedCases * 10 * periodTypeValue;
   impactResult.severeCasesByRequestedTime = (15 / 100) * infectReqTime10;
 
-  //15% of infectionsByRequestedTime severeImpact
+  // 15% of infectionsByRequestedTime severeImpact
   const infectReqTime50 = reportedCases * 50 * periodTypeValue;
   severeImpactResult.severeCasesByRequestedTime = (15 / 100) * infectReqTime50;
 
-  //The number of available beds.
+  // The number of available beds.
   const numOfAvailableBeds = (35 / 100) * totalHospitalBeds;
 
   // hospitalBedsByRequestedTime for impact
@@ -62,7 +63,7 @@ const covid19ImpactEstimator = (data) => {
   severeImpactResult.casesForVentilatorsByRequestedTime = (2 / 100) * infectReqTime50;
 
   // How much money the economy is likely to lose over the said period.
-  let temp = avgDailyIncomePopulation * avgDailyIncomeInUSD * days;
+  const temp = avgDailyIncomePopulation * avgDailyIncomeInUSD * days;
   impactResult.dollarsInFlight = infectReqTime10 * temp;
   severeImpactResult.dollarsInFlight = infectReqTime50 * temp;
 
