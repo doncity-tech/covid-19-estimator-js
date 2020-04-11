@@ -35,7 +35,7 @@ const covid19ImpactEstimator = (data) => {
   impactResult.infectionsByRequestedTime = reportedCases * 10 * periodTypeValue;
   severeImpactResult.infectionsByRequestedTime = reportedCases * 50 * periodTypeValue;
 
-  // 15% of infectionsByRequestedTime impact  
+  // 15% of infectionsByRequestedTime impact
   const infectReqTime10 = reportedCases * 10 * periodTypeValue;
   impactResult.severeCasesByRequestedTime = (15 / 100) * infectReqTime10;
 
