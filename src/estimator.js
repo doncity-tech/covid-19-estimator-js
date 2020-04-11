@@ -3,6 +3,7 @@ const covid19ImpactEstimator = (data) => {
   const {
     region,
     periodType,
+    timeToElapse,
     reportedCases,
     totalHospitalBeds
   } = data;
@@ -15,16 +16,15 @@ const covid19ImpactEstimator = (data) => {
   let periodTypeValue = null;
   let days = null;
   if (periodType === 'days') {
-    days = 30;
-    periodTypeValue = 1024;
+    days = timeToElapse;
+    const factor = days / 3;
+    periodTypeValue = 2 ** factor;
   } else if (periodType === 'weeks') {
-    const week = 4;
-    days = 7 * week;
+    days = 7 * timeToElapse;
     const factor = days / 3;
     periodTypeValue = 2 ** factor;
   } else {
-    const month = 1;
-    days = 30 * month;
+    days = 30 * timeToElapse;
     const factor = days / 3;
     periodTypeValue = 2 ** factor;
   }
@@ -75,3 +75,4 @@ const covid19ImpactEstimator = (data) => {
 };
 
 export default covid19ImpactEstimator;
+
