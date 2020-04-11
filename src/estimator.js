@@ -8,11 +8,9 @@ const covid19ImpactEstimator = (data) => {
   } = data;
 
   const { avgDailyIncomeInUSD, avgDailyIncomePopulation } = region;
-
   const impactResult = {};
   const severeImpactResult = {};
 
-  // check for data-period-type
   let periodTypeValue = null;
   let days = null;
   if (periodType === 'days') {
@@ -22,12 +20,12 @@ const covid19ImpactEstimator = (data) => {
     const week = 4;
     days = 7 * week;
     const factor = days / 3;
-    periodTypeValue = Math.pow(2, factor);
+    periodTypeValue = 2 ** factor;
   } else {
     const month = 1;
     days = 30 * month;
     const factor = days / 3;
-    periodTypeValue = Math.pow(2, factor);
+    periodTypeValue = 2 ** factor;
   }
 
   impactResult.currentlyInfected = reportedCases * 10;
@@ -64,8 +62,9 @@ const covid19ImpactEstimator = (data) => {
   severeImpactResult.casesForVentilatorsByRequestedTime = (2 / 100) * infectReqTime50;
 
   // How much money the economy is likely to lose over the said period.
-  impactResult.dollarsInFlight = infectReqTime10 * avgDailyIncomePopulation * avgDailyIncomeInUSD * days;
-  severeImpactResult.dollarsInFlight = infectReqTime50 * avgDailyIncomePopulation * avgDailyIncomeInUSD * days;
+  let temp = avgDailyIncomePopulation * avgDailyIncomeInUSD * days;
+  impactResult.dollarsInFlight = infectReqTime10 * temp;
+  severeImpactResult.dollarsInFlight = infectReqTime50 * temp;
 
   return {
     data: originalData,
