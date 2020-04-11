@@ -65,9 +65,10 @@ const covid19ImpactEstimator = (data) => {
   severeImpactResult.casesForVentilatorsByRequestedTime = (2 / 100) * infectReqTime50;
 
   // How much money the economy is likely to lose over the said period.
-  const temp = infectReqTime10 * avgDailyIncomePopulation;
-  impactResult.dollarsInFlight = temp * avgDailyIncomeInUSD * days;
-  severeImpactResult.dollarsInFlight = infectReqTime50 * temp;
+  const temp2 = infectReqTime10 * avgDailyIncomePopulation * avgDailyIncomeInUSD;
+  impactResult.dollarsInFlight = Math.trunc(temp2 / days);
+  const temp3 = infectReqTime50 * avgDailyIncomePopulation * avgDailyIncomeInUSD;
+  severeImpactResult.dollarsInFlight = Math.trunc(temp3 / days);
 
   return {
     data: originalData,
