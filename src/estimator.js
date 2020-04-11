@@ -57,12 +57,12 @@ const covid19ImpactEstimator = (data) => {
   severeImpactResult.hospitalBedsByRequestedTime = temp50;
 
   // 5% of infectionsByRequestedTime
-  impactResult.casesForICUByRequestedTime = (5 / 100) * infectReqTime10;
-  severeImpactResult.casesForICUByRequestedTime = (5 / 100) * infectReqTime50;
+  impactResult.casesForICUByRequestedTime = Math.trunc((5 / 100) * infectReqTime10);
+  severeImpactResult.casesForICUByRequestedTime = Math.trunc((5 / 100) * infectReqTime50);
 
   // 2% of infectionsByRequestedTime
-  impactResult.casesForVentilatorsByRequestedTime = (2 / 100) * infectReqTime10;
-  severeImpactResult.casesForVentilatorsByRequestedTime = (2 / 100) * infectReqTime50;
+  impactResult.casesForVentilatorsByRequestedTime = Math.trunc((2 / 100) * infectReqTime10);
+  severeImpactResult.casesForVentilatorsByRequestedTime = Math.trunc((2 / 100) * infectReqTime50);
 
   // How much money the economy is likely to lose over the said period.
   const temp = avgDailyIncomePopulation * avgDailyIncomeInUSD * days;
